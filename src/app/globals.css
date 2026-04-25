@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Migae';
+  src: url('/Assets/migae/Migae-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-migae: 'Migae', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F5EFE6;
+  color: #1A1612;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.overlay-gradient-bottom {
+  background: linear-gradient(to bottom, transparent 40%, rgba(26, 22, 18, 0.7) 100%);
+}
+
+.overlay-gradient-left {
+  background: linear-gradient(to right, rgba(26, 22, 18, 0.65) 0%, transparent 60%);
+}
