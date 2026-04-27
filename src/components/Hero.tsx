@@ -12,7 +12,7 @@ export default function Hero() {
       className="relative flex flex-col min-h-screen overflow-hidden"
       style={{
         background:
-          'radial-gradient(ellipse at 20% 70%, #E8946A1A 0%, #F5EFE6 55%, #DDD0BE14 100%)',
+          'radial-gradient(ellipse at 20% 70%, #EB825820 0%, #FFFFFF 55%, #BEB8EB14 100%)',
       }}
     >
       {/* ── Nav ─────────────────────────────────── */}
@@ -24,7 +24,7 @@ export default function Hero() {
       >
         <span
           className="text-xl tracking-widest text-atl-charcoal select-none"
-          style={{ fontFamily: 'var(--font-migae)' }}
+          style={{ fontFamily: 'var(--font-milker)' }}
         >
           MACK
         </span>
@@ -70,7 +70,7 @@ export default function Hero() {
           >
             Model
             <span className="text-atl-sand">·</span>
-            <span className="text-atl-rust" style={{ fontFamily: 'var(--font-migae)' }}>
+            <span className="text-atl-rust" style={{ fontFamily: 'var(--font-milker)' }}>
               Fighter
             </span>
           </motion.p>
@@ -79,7 +79,7 @@ export default function Hero() {
           <motion.h1
             className="text-atl-charcoal leading-[0.88] mb-5"
             style={{
-              fontFamily: 'var(--font-migae)',
+              fontFamily: 'var(--font-milker)',
               fontSize: 'clamp(68px, 15vw, 230px)',
             }}
             initial={{ y: 60, opacity: 0 }}
@@ -146,7 +146,7 @@ export default function Hero() {
           {/* Feather left edge so split feels seamless */}
           <div
             className="absolute inset-y-0 left-0 w-28 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, #F5EFE6, transparent)' }}
+            style={{ background: 'linear-gradient(to right, #FFFFFF, transparent)' }}
           />
         </motion.div>
 

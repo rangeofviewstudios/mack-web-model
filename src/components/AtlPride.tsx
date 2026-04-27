@@ -16,7 +16,7 @@ export default function AtlPride() {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span
           className="text-[25vw] text-black/10 leading-none tracking-tight whitespace-nowrap"
-          style={{ fontFamily: 'var(--font-migae)' }}
+          style={{ fontFamily: 'var(--font-milker)' }}
         >
           ATL
         </span>
@@ -40,7 +40,7 @@ export default function AtlPride() {
         >
           <p
             className="text-5xl md:text-7xl lg:text-8xl text-atl-cream leading-tight"
-            style={{ fontFamily: 'var(--font-migae)' }}
+            style={{ fontFamily: 'var(--font-milker)' }}
           >
             &ldquo;Atlanta
             <br />

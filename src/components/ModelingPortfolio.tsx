@@ -27,7 +27,7 @@ function mod(n: number, m: number) { return ((n % m) + m) % m }
 // ── Toggle icons ─────────────────────────────────────────────────────────────
 
 function ScatterIcon({ active }: { active: boolean }) {
-  const fill = active ? '#1A1612' : '#7C6A58'
+  const fill = active ? '#FFFFFF' : '#7B74C4'
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
       <rect x="0" y="0" width="5" height="5" rx="1" fill={fill} />
@@ -39,7 +39,7 @@ function ScatterIcon({ active }: { active: boolean }) {
 }
 
 function ListIcon({ active }: { active: boolean }) {
-  const fill = active ? '#1A1612' : '#7C6A58'
+  const fill = active ? '#FFFFFF' : '#7B74C4'
   return (
     <svg width="13" height="10" viewBox="0 0 13 10" fill="none">
       <rect x="0" y="0" width="13" height="2" rx="1" fill={fill} />
@@ -73,7 +73,13 @@ export default function ModelingPortfolio() {
     <section
       ref={sectionRef}
       id="gallery"
-      className="relative h-screen bg-atl-charcoal overflow-hidden"
+      className="relative h-screen overflow-hidden"
+      style={{
+        background:
+          'radial-gradient(ellipse at 22% 32%, rgba(235,130,88,0.22) 0%, transparent 52%), ' +
+          'radial-gradient(ellipse at 78% 70%, rgba(190,184,235,0.20) 0%, transparent 52%), ' +
+          '#000000',
+      }}
     >
 
       {/* ── View toggle ─────────────────────────────────── */}
@@ -82,7 +88,7 @@ export default function ModelingPortfolio() {
           onClick={() => setMode('scatter')}
           aria-label="Scatter view"
           className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
-            mode === 'scatter' ? 'bg-atl-cream' : 'hover:bg-white/10'
+            mode === 'scatter' ? 'bg-atl-rust' : 'hover:bg-white/10'
           }`}
         >
           <ScatterIcon active={mode === 'scatter'} />
@@ -91,7 +97,7 @@ export default function ModelingPortfolio() {
           onClick={() => setMode('carousel')}
           aria-label="Carousel view"
           className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
-            mode === 'carousel' ? 'bg-atl-cream' : 'hover:bg-white/10'
+            mode === 'carousel' ? 'bg-atl-rust' : 'hover:bg-white/10'
           }`}
         >
           <ListIcon active={mode === 'carousel'} />
@@ -123,8 +129,14 @@ export default function ModelingPortfolio() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.9, delay: 0.35 }}
-                className="text-6xl md:text-8xl lg:text-9xl text-atl-cream leading-none"
-                style={{ fontFamily: 'var(--font-migae)' }}
+                className="text-6xl md:text-8xl lg:text-9xl leading-none"
+                style={{
+                  fontFamily: 'var(--font-milker)',
+                  background: 'linear-gradient(135deg, #EB8258 0%, #BEB8EB 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
               >
                 The Work.
               </motion.h2>
@@ -132,7 +144,7 @@ export default function ModelingPortfolio() {
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.7, delay: 0.9 }}
-                className="text-atl-stone/60 text-xs tracking-[0.3em] uppercase mt-6"
+                className="text-atl-sand/60 text-xs tracking-[0.3em] uppercase mt-6"
               >
                 move your cursor
               </motion.p>

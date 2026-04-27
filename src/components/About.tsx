@@ -48,7 +48,7 @@ export default function About() {
           <FadeIn delay={0.1}>
             <h2
               className="text-6xl md:text-7xl lg:text-8xl leading-none text-atl-charcoal mb-10"
-              style={{ fontFamily: 'var(--font-migae)' }}
+              style={{ fontFamily: 'var(--font-milker)' }}
             >
               Born
               <br />
@@ -81,7 +81,7 @@ export default function About() {
                   <p className="text-atl-stone text-xs tracking-[0.3em] uppercase mb-1">{label}</p>
                   <p
                     className="text-2xl text-atl-charcoal"
-                    style={{ fontFamily: 'var(--font-migae)' }}
+                    style={{ fontFamily: 'var(--font-milker)' }}
                   >
                     {value}
                   </p>

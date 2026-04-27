@@ -6,18 +6,19 @@ const config: Config = {
     extend: {
       colors: {
         atl: {
-          peach:    '#E8946A',
-          rust:     '#B84C1E',
-          gold:     '#C9A84C',
-          forest:   '#2D4A3E',
-          cream:    '#F5EFE6',
-          charcoal: '#1A1612',
-          stone:    '#7C6A58',
-          sand:     '#DDD0BE',
+          peach:    '#EB8258',
+          rust:     '#EB8258',
+          gold:     '#EB8258',
+          forest:   '#000000',
+          cream:    '#FFFFFF',
+          charcoal: '#000000',
+          stone:    '#7B74C4',
+          sand:     '#BEB8EB',
         },
       },
       fontFamily: {
         migae: ['var(--font-migae)', 'serif'],
+        milker: ['var(--font-milker)', 'serif'],
         editorial: ['"Georgia"', '"Times New Roman"', 'serif'],
       },
       fontSize: {

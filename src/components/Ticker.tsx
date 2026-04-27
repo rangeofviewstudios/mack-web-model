@@ -44,7 +44,7 @@ export default function Ticker({
           <span key={i} className="flex items-center shrink-0">
             <span
               className={`${labelColor} text-[10px] tracking-[0.65em] uppercase px-5 shrink-0`}
-              style={{ fontFamily: 'var(--font-migae)' }}
+              style={{ fontFamily: 'var(--font-milker)' }}
             >
               {ALIAS}
             </span>
