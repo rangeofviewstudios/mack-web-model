@@ -16,7 +16,6 @@ export default function Home() {
       <Ticker
         bg="bg-black"
         labelColor="text-white/18"
-        sepColor="text-[#EB8258]/55"
         speed={20}
       />
 
