@@ -199,9 +199,6 @@ export default function ModelingPortfolio() {
                   {String(idx + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
                 </span>
               </div>
-              <span className="text-atl-stone/30 text-[8px] tracking-[0.3em] uppercase hidden md:block">
-                ← → to navigate
-              </span>
             </div>
 
             {/* Main image — object-contain preserves OG crop */}

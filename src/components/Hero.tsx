@@ -3,8 +3,6 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-const navLinks = ['Home', 'About', 'Gallery', 'Boxing']
-
 export default function Hero() {
   return (
     <section
@@ -15,44 +13,6 @@ export default function Hero() {
           'radial-gradient(ellipse at 20% 70%, #EB825820 0%, #FFFFFF 55%, #BEB8EB14 100%)',
       }}
     >
-      {/* ── Nav ─────────────────────────────────── */}
-      <motion.header
-        className="relative z-30 flex items-center justify-between px-8 md:px-14 py-6 shrink-0"
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
-        <span
-          className="text-xl tracking-widest text-atl-charcoal select-none"
-          style={{ fontFamily: 'var(--font-milker)' }}
-        >
-          MACK
-        </span>
-
-        <nav className="hidden md:flex items-center gap-6 text-[11px] tracking-[0.22em] uppercase text-atl-stone">
-          {navLinks.map((link, i) => (
-            <span key={link} className="flex items-center gap-6">
-              <a
-                href={`#${link.toLowerCase()}`}
-                className="hover:text-atl-charcoal transition-colors duration-200"
-              >
-                {link}
-              </a>
-              {i < navLinks.length - 1 && (
-                <span className="text-atl-sand select-none">—</span>
-              )}
-            </span>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-4 text-[11px] tracking-widest text-atl-stone">
-          <span className="hidden md:block uppercase">ATL</span>
-          <span className="hidden md:block text-atl-sand">—</span>
-          <div className="w-7 h-7 rounded-full border border-atl-sand flex items-center justify-center text-sm text-atl-charcoal">
-            ◐
-          </div>
-        </div>
-      </motion.header>
 
       {/* ── Hero body — stable grid, no absolute text block ── */}
       <div className="flex-1 grid grid-cols-1 md:grid-cols-[52fr_48fr] min-h-0 relative">
@@ -120,9 +80,11 @@ export default function Hero() {
           >
             <a
               href="#contact"
-              className="inline-block border border-atl-rust text-atl-rust px-8 py-3 text-[11px] tracking-[0.25em] uppercase hover:bg-atl-rust hover:text-atl-cream transition-all duration-300"
+              className="group inline-flex items-center gap-4 bg-atl-charcoal text-atl-cream px-10 py-4 text-[11px] tracking-[0.35em] uppercase hover:bg-atl-rust transition-colors duration-400"
+              style={{ fontFamily: 'var(--font-milker)' }}
             >
               Let&apos;s Collaborate
+              <span className="text-sm leading-none transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
             </a>
           </motion.div>
         </div>
@@ -157,16 +119,19 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.0 }}
         >
-          {['INSTAGRAM', 'TIKTOK', 'EMAIL'].map((label, i) => (
+          {[
+            { label: 'INSTAGRAM', href: 'https://www.instagram.com/mackeroni_8/' },
+            { label: 'EMAIL',     href: 'mailto:mack@thecagedbutterfly.com' },
+          ].map(({ label, href }, i) => (
             <span key={label} className="flex flex-col items-center gap-3">
               <a
-                href={label === 'EMAIL' ? 'mailto:hello@mack.com' : '#'}
+                href={href}
                 className="text-[8px] tracking-[0.4em] uppercase text-atl-stone/50 hover:text-atl-rust transition-colors duration-200"
                 style={{ writingMode: 'vertical-rl' }}
               >
                 {label}
               </a>
-              {i < 2 && <span className="w-px h-4 bg-atl-sand" />}
+              {i < 1 && <span className="w-px h-4 bg-atl-sand" />}
             </span>
           ))}
         </motion.div>

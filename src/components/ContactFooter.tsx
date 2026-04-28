@@ -5,9 +5,8 @@ import { useEffect, useRef, useState } from 'react'
 import ButterflyCursor from '@/components/ui/ButterflyCursor'
 
 const socials = [
-  { label: 'Instagram', href: '#' },
-  { label: 'TikTok',    href: '#' },
-  { label: 'Email',     href: 'mailto:hello@mack.com' },
+  { label: 'Instagram', href: 'https://www.instagram.com/mackeroni_8/' },
+  { label: 'Email',     href: 'mailto:mack@thecagedbutterfly.com' },
 ]
 
 function AtlantaTime() {

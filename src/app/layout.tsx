@@ -19,14 +19,24 @@ const personSchema = {
     addressCountry: 'US',
   },
   sameAs: [
-    'https://instagram.com/mackofficial',
-    'https://tiktok.com/@mackofficial',
+    'https://www.instagram.com/mackeroni_8/',
   ],
 }
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'MACK — Model. Fighter. Atlanta.',
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico',       sizes: 'any' },
+    ],
+    apple: { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    other: [
+      { rel: 'manifest', url: '/site.webmanifest' },
+    ],
+  },
   description:
     'Mack is an Atlanta-based model and boxer whose work bridges editorial elegance with raw power. Available for editorial, commercial, and brand projects.',
   alternates: {
