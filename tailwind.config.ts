@@ -7,13 +7,13 @@ const config: Config = {
       colors: {
         atl: {
           peach:    '#EB8258',
-          rust:     '#EB8258',
-          gold:     '#EB8258',
-          forest:   '#000000',
-          cream:    '#FFFFFF',
-          charcoal: '#000000',
-          stone:    '#7B74C4',
-          sand:     '#BEB8EB',
+          rust:     '#B84C1E',
+          gold:     '#C9A84C',
+          forest:   '#4A6741',
+          cream:    '#F5EFE6',
+          charcoal: '#1A1612',
+          stone:    '#7C6A58',
+          sand:     '#DDD0BE',
         },
       },
       fontFamily: {

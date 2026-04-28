@@ -8,7 +8,6 @@ import Floating, { FloatingElement } from '@/components/ui/parallax-floating'
 const images = [
   { src: '/Assets/fuegreen1.webp',            alt: 'Mack editorial',      pos: 'top-[4%] left-[3%]',   w: 'w-24 md:w-32', depth: 0.5 },
   { src: '/Assets/fuemodel.webp',             alt: 'Mack portrait',       pos: 'top-[2%] left-[22%]',  w: 'w-20 md:w-28', depth: 1   },
-  { src: '/Assets/whitedress.webp',           alt: 'Mack white dress',    pos: 'top-[1%] left-[54%]',  w: 'w-28 md:w-36', depth: 1.5 },
   { src: '/Assets/mackdark.webp',             alt: 'Mack dark',           pos: 'top-[5%] left-[79%]',  w: 'w-20 md:w-28', depth: 0.5 },
   { src: '/Assets/blueorangemackstairs.webp', alt: 'Mack on stairs',      pos: 'top-[35%] left-[1%]',  w: 'w-28 md:w-36', depth: 1   },
   { src: '/Assets/fuemodel2.webp',            alt: 'Mack portrait 2',     pos: 'top-[26%] left-[17%]', w: 'w-16 md:w-24', depth: 2   },
@@ -20,6 +19,7 @@ const images = [
   { src: '/Assets/schoolmodel.webp',          alt: 'Mack school shoot',   pos: 'top-[68%] left-[26%]', w: 'w-20 md:w-28', depth: 0.5 },
   { src: '/Assets/livingroom.webp',           alt: 'Mack interior',       pos: 'top-[74%] left-[52%]', w: 'w-32 md:w-44', depth: 1   },
   { src: '/Assets/loli (1 of 1).webp',        alt: 'Mack editorial 2',    pos: 'top-[66%] left-[76%]', w: 'w-20 md:w-28', depth: 2   },
+  { src: '/Assets/whitedress.webp',           alt: 'Mack white dress',    pos: 'top-[1%] left-[54%]',  w: 'w-28 md:w-36', depth: 1.5 },
 ]
 
 function mod(n: number, m: number) { return ((n % m) + m) % m }

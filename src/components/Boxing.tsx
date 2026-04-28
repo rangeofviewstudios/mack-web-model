@@ -5,12 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 
 const images = [
+  { src: '/Assets/boxingmac6.webp',  alt: 'Mack in gloves' },
   { src: '/Assets/boxingmack.webp',  alt: 'Mack boxing' },
   { src: '/Assets/boxingmack2.webp', alt: 'Mack in the ring' },
   { src: '/Assets/boxingmac3.webp',  alt: 'Mack training' },
   { src: '/Assets/boxingmac4.webp',  alt: 'Mack fighting' },
   { src: '/Assets/boxingmac5.webp',  alt: 'Mack sparring' },
-  { src: '/Assets/boxingmac6.webp',  alt: 'Mack in gloves' },
 ]
 
 function mod(n: number, m: number) { return ((n % m) + m) % m }

@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import BlobCursor from '@/components/ui/BlobCursor'
+import ButterflyCursor from '@/components/ui/ButterflyCursor'
 
 const socials = [
   { label: 'Instagram', href: '#' },
@@ -37,25 +37,7 @@ export default function ContactFooter() {
   return (
     <footer id="contact" ref={ref} className="relative bg-atl-cream overflow-hidden">
 
-      <BlobCursor
-        blobType="circle"
-        fillColor="#EB8258"
-        trailCount={3}
-        sizes={[50, 100, 65]}
-        innerSizes={[16, 28, 20]}
-        innerColor="rgba(255,255,255,0.6)"
-        opacities={[0.55, 0.45, 0.5]}
-        shadowColor="rgba(235,130,88,0.25)"
-        shadowBlur={0}
-        shadowOffsetX={0}
-        shadowOffsetY={0}
-        filterStdDeviation={22}
-        useFilter={true}
-        fastDuration={0.1}
-        slowDuration={0.55}
-        zIndex={0}
-        filterId="footer-blob"
-      />
+      <ButterflyCursor />
 
       {/* ── Status bar ── */}
       <div className="px-8 md:px-14 py-3.5 flex items-center justify-between">
