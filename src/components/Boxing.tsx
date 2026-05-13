@@ -26,15 +26,15 @@ export default function Boxing() {
     <section id="boxing" className="relative bg-black overflow-hidden">
 
       {/* ── TITLE BLOCK ─────────────────────────────────── */}
-      <div className="px-8 md:px-14 pt-16 pb-0">
+      <div className="px-5 md:px-14 pt-14 md:pt-16 pb-0">
         <div className="w-16 h-[3px] bg-atl-rust mb-6" />
         <h2
           className="text-white leading-[0.85] select-none"
-          style={{ fontFamily: 'var(--font-milker)', fontSize: 'clamp(80px, 18vw, 300px)' }}
+          style={{ fontFamily: 'var(--font-milker)', fontSize: 'clamp(56px, 18vw, 300px)' }}
         >
           SMACK
         </h2>
-        <div className="flex items-center gap-6 mt-5">
+        <div className="flex items-center gap-4 md:gap-6 mt-4 md:mt-5">
           <span className="text-atl-rust text-[10px] tracking-[0.5em] uppercase">Fighter</span>
           <span className="text-white/20 text-sm">|</span>
           <span className="text-white/40 text-[10px] tracking-[0.4em] uppercase">Atlanta, GA</span>
@@ -42,12 +42,12 @@ export default function Boxing() {
       </div>
 
       {/* ── IMAGE SLIDER ────────────────────────────────── */}
-      <div className="relative mt-10 pb-16">
+      <div className="relative mt-8 md:mt-10 pb-12 md:pb-16">
 
         {/* Main image */}
         <div
           className="relative w-full"
-          style={{ height: 'clamp(420px, 72vh, 720px)' }}
+          style={{ height: 'clamp(260px, 60vh, 720px)' }}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -70,8 +70,8 @@ export default function Boxing() {
           </AnimatePresence>
         </div>
 
-        {/* Nav row: counter + arrows + dots */}
-        <div className="flex items-center justify-between px-8 md:px-14 mt-6">
+        {/* Nav row: counter + dots + arrows */}
+        <div className="flex items-center justify-between px-5 md:px-14 mt-5 md:mt-6">
 
           {/* Counter */}
           <div className="flex items-baseline gap-1.5">
@@ -86,28 +86,32 @@ export default function Boxing() {
             </span>
           </div>
 
-          {/* Dots */}
-          <div className="flex items-center gap-1.5">
+          {/* Dots — wrapped in larger touch targets */}
+          <div className="flex items-center gap-1">
             {images.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurr(i)}
                 aria-label={`Go to image ${i + 1}`}
-                className={`rounded-full transition-all duration-300 ${
-                  i === curr
-                    ? 'w-5 h-[3px] bg-atl-rust'
-                    : 'w-[3px] h-[3px] bg-white/20 hover:bg-white/45'
-                }`}
-              />
+                className="w-8 h-8 flex items-center justify-center"
+              >
+                <span
+                  className={`block rounded-full transition-all duration-300 ${
+                    i === curr
+                      ? 'w-5 h-[3px] bg-atl-rust'
+                      : 'w-[3px] h-[3px] bg-white/20'
+                  }`}
+                />
+              </button>
             ))}
           </div>
 
           {/* Arrows */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             <button
               onClick={() => setCurr(prevIdx)}
               aria-label="Previous"
-              className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:border-atl-rust hover:bg-atl-rust/10 transition-all duration-250 group"
+              className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center hover:border-atl-rust hover:bg-atl-rust/10 transition-all duration-250 group"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M9 2.5L4.5 7L9 11.5" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" className="group-hover:opacity-100 transition-opacity duration-250" />
@@ -116,7 +120,7 @@ export default function Boxing() {
             <button
               onClick={() => setCurr(nextIdx)}
               aria-label="Next"
-              className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:border-atl-rust hover:bg-atl-rust/10 transition-all duration-250 group"
+              className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center hover:border-atl-rust hover:bg-atl-rust/10 transition-all duration-250 group"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M5 2.5L9.5 7L5 11.5" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" className="group-hover:opacity-100 transition-opacity duration-250" />

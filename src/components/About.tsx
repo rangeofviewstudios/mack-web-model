@@ -25,7 +25,7 @@ export default function About() {
       <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
 
         {/* Left: Image */}
-        <div className="relative h-[70vh] md:h-auto overflow-hidden">
+        <div className="relative h-[50vh] md:h-auto overflow-hidden">
           <Image
             src="/Assets/fuegreen2.webp"
             alt="Mack — editorial portrait"
@@ -37,7 +37,7 @@ export default function About() {
         </div>
 
         {/* Right: Text */}
-        <div className="flex flex-col justify-center px-10 md:px-16 lg:px-24 py-16 md:py-24 bg-atl-cream">
+        <div className="flex flex-col justify-center px-6 md:px-16 lg:px-24 py-12 md:py-24 bg-atl-cream">
 
           <FadeIn delay={0}>
             <span className="text-atl-rust text-xs tracking-[0.4em] uppercase mb-6 block">
@@ -47,7 +47,7 @@ export default function About() {
 
           <FadeIn delay={0.1}>
             <h2
-              className="text-6xl md:text-7xl lg:text-8xl leading-none text-atl-charcoal mb-10"
+              className="text-5xl md:text-7xl lg:text-8xl leading-none text-atl-charcoal mb-8 md:mb-10"
               style={{ fontFamily: 'var(--font-milker)' }}
             >
               Born
@@ -59,19 +59,19 @@ export default function About() {
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="text-atl-stone text-lg md:text-xl leading-relaxed mb-6 max-w-md" style={{ fontFamily: 'Georgia, serif' }}>
+            <p className="text-atl-stone text-base md:text-lg leading-relaxed mb-6 max-w-md" style={{ fontFamily: 'Georgia, serif' }}>
               Mack is a 23-year-old model and boxer from Atlanta, Georgia — a city that shaped her edge, her grace, and her drive to move through every room like she owns it.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <p className="text-atl-stone text-base leading-relaxed mb-10 max-w-md" style={{ fontFamily: 'Georgia, serif' }}>
+            <p className="text-atl-stone text-sm md:text-base leading-relaxed mb-8 md:mb-10 max-w-md" style={{ fontFamily: 'Georgia, serif' }}>
               Her work lives at the intersection of editorial elegance and raw power. In front of a camera or in the ring, Mack brings the same presence: deliberate, unapologetic, Atlanta.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.4}>
-            <div className="flex gap-12 border-t border-atl-sand pt-8">
+            <div className="flex flex-wrap gap-6 md:gap-12 border-t border-atl-sand pt-8">
               {[
                 { label: 'Hometown', value: 'Atlanta, GA' },
                 { label: 'Age', value: '23' },

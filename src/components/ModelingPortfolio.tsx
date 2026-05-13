@@ -27,7 +27,7 @@ function mod(n: number, m: number) { return ((n % m) + m) % m }
 // ── Toggle icons ─────────────────────────────────────────────────────────────
 
 function ScatterIcon({ active }: { active: boolean }) {
-  const fill = active ? '#FFFFFF' : '#7B74C4'
+  const fill = active ? '#FFFFFF' : '#9CA3AF'
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
       <rect x="0" y="0" width="5" height="5" rx="1" fill={fill} />
@@ -39,7 +39,7 @@ function ScatterIcon({ active }: { active: boolean }) {
 }
 
 function ListIcon({ active }: { active: boolean }) {
-  const fill = active ? '#FFFFFF' : '#7B74C4'
+  const fill = active ? '#FFFFFF' : '#9CA3AF'
   return (
     <svg width="13" height="10" viewBox="0 0 13 10" fill="none">
       <rect x="0" y="0" width="13" height="2" rx="1" fill={fill} />
@@ -57,6 +57,11 @@ export default function ModelingPortfolio() {
 
   const sectionRef = useRef<HTMLElement>(null)
   const inView     = useInView(sectionRef, { once: true, margin: '-100px' })
+
+  // Default to carousel on mobile — scatter needs a mouse cursor
+  useEffect(() => {
+    if (window.innerWidth < 768) setMode('carousel')
+  }, [])
 
   // Keyboard nav in carousel
   useEffect(() => {
@@ -83,11 +88,11 @@ export default function ModelingPortfolio() {
     >
 
       {/* ── View toggle ─────────────────────────────────── */}
-      <div className="absolute top-5 right-5 z-30 flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1">
+      <div className="absolute top-4 right-4 z-30 flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1">
         <button
           onClick={() => setMode('scatter')}
           aria-label="Scatter view"
-          className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+          className={`w-10 h-10 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
             mode === 'scatter' ? 'bg-atl-rust' : 'hover:bg-white/10'
           }`}
         >
@@ -96,7 +101,7 @@ export default function ModelingPortfolio() {
         <button
           onClick={() => setMode('carousel')}
           aria-label="Carousel view"
-          className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+          className={`w-10 h-10 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
             mode === 'carousel' ? 'bg-atl-rust' : 'hover:bg-white/10'
           }`}
         >
@@ -129,7 +134,7 @@ export default function ModelingPortfolio() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.9, delay: 0.35 }}
-                className="text-6xl md:text-8xl lg:text-9xl leading-none"
+                className="text-5xl md:text-8xl lg:text-9xl leading-none"
                 style={{
                   fontFamily: 'var(--font-milker)',
                   background: 'linear-gradient(135deg, #EB8258 0%, #BEB8EB 100%)',
@@ -192,7 +197,7 @@ export default function ModelingPortfolio() {
             transition={{ duration: 0.35 }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-8 md:px-14 pt-8 pb-3 shrink-0">
+            <div className="flex items-center justify-between px-5 md:px-14 pt-6 pb-3 shrink-0">
               <div>
                 <span className="text-atl-rust text-[9px] tracking-[0.4em] uppercase block mb-1">Portfolio</span>
                 <span className="text-atl-stone/50 text-[9px] tracking-[0.25em] font-mono">
@@ -206,7 +211,7 @@ export default function ModelingPortfolio() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={idx}
-                  className="absolute inset-0 flex items-center justify-center px-16 py-2"
+                  className="absolute inset-0 flex items-center justify-center px-4 md:px-16 py-2"
                   initial={{ opacity: 0, x: 28 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -28 }}
@@ -218,7 +223,7 @@ export default function ModelingPortfolio() {
                       alt={images[idx].alt}
                       fill
                       className="object-contain"
-                      sizes="(max-width: 768px) 90vw, 75vw"
+                      sizes="(max-width: 768px) 96vw, 75vw"
                       priority
                     />
                   </div>
@@ -227,21 +232,23 @@ export default function ModelingPortfolio() {
             </div>
 
             {/* Caption + arrows + thumbnails */}
-            <div className="shrink-0 px-8 md:px-14 pb-6 pt-1">
+            <div className="shrink-0 px-5 md:px-14 pb-4 md:pb-6 pt-1">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-atl-stone/40 text-[9px] tracking-[0.25em] uppercase">
+                <p className="text-atl-stone/40 text-[9px] tracking-[0.25em] uppercase truncate mr-4">
                   {images[idx].alt}
                 </p>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 shrink-0">
                   <button
                     onClick={() => setIdx(i => mod(i - 1, images.length))}
-                    className="w-9 h-9 rounded-full border border-atl-stone/25 flex items-center justify-center text-atl-stone text-sm hover:border-atl-cream hover:text-atl-cream transition-all duration-200"
+                    className="w-11 h-11 rounded-full border border-atl-stone/25 flex items-center justify-center text-atl-stone text-sm hover:border-atl-cream hover:text-atl-cream transition-all duration-200"
+                    aria-label="Previous image"
                   >
                     ←
                   </button>
                   <button
                     onClick={() => setIdx(i => mod(i + 1, images.length))}
-                    className="w-9 h-9 rounded-full border border-atl-stone/25 flex items-center justify-center text-atl-stone text-sm hover:border-atl-cream hover:text-atl-cream transition-all duration-200"
+                    className="w-11 h-11 rounded-full border border-atl-stone/25 flex items-center justify-center text-atl-stone text-sm hover:border-atl-cream hover:text-atl-cream transition-all duration-200"
+                    aria-label="Next image"
                   >
                     →
                   </button>
@@ -257,7 +264,8 @@ export default function ModelingPortfolio() {
                   <button
                     key={img.src}
                     onClick={() => setIdx(i)}
-                    className={`relative shrink-0 w-10 h-14 overflow-hidden transition-all duration-200 ${
+                    aria-label={`View ${img.alt}`}
+                    className={`relative shrink-0 w-11 h-14 overflow-hidden transition-all duration-200 ${
                       i === idx
                         ? 'ring-1 ring-atl-rust opacity-100'
                         : 'opacity-25 hover:opacity-55'
@@ -268,7 +276,7 @@ export default function ModelingPortfolio() {
                       alt={img.alt}
                       fill
                       className="object-cover object-top"
-                      sizes="40px"
+                      sizes="44px"
                     />
                   </button>
                 ))}

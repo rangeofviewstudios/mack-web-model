@@ -10,7 +10,7 @@ export default function AtlPride() {
   return (
     <section
       id="atl"
-      className="relative bg-atl-rust overflow-hidden py-32 md:py-48 px-8 md:px-16"
+      className="relative bg-atl-rust overflow-hidden py-20 md:py-48 px-6 md:px-16"
     >
       {/* Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
@@ -39,7 +39,7 @@ export default function AtlPride() {
           transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
         >
           <p
-            className="text-5xl md:text-7xl lg:text-8xl text-atl-cream leading-tight"
+            className="text-4xl md:text-7xl lg:text-8xl text-atl-cream leading-tight"
             style={{ fontFamily: 'var(--font-milker)' }}
           >
             &ldquo;Atlanta

@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="flex-1 grid grid-cols-1 md:grid-cols-[52fr_48fr] min-h-0 relative">
 
         {/* Left: all text content */}
-        <div className="flex flex-col justify-center px-8 md:px-14 py-10 md:py-0 relative z-10">
+        <div className="flex flex-col justify-center px-6 md:px-14 py-10 md:py-0 relative z-10">
 
           {/* Eyebrow */}
           <motion.p
