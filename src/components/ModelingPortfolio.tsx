@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Floating, { FloatingElement } from '@/components/ui/parallax-floating'
 
@@ -47,7 +47,6 @@ function ListIcon({ active }: { active: boolean }) {
   )
 }
 
-// Defined outside component so React sees a stable component identity across renders
 function TogglePill({
   mode,
   onScatter,
@@ -88,7 +87,7 @@ export default function ModelingPortfolio() {
   const sectionRef = useRef<HTMLElement>(null)
   const inView     = useInView(sectionRef, { once: true, margin: '-100px' })
 
-  // Upgrade to scatter only on desktop — scatter needs a mouse cursor
+  // Upgrade to scatter on desktop only
   useEffect(() => {
     if (window.innerWidth >= 768) setMode('scatter')
   }, [])
@@ -108,290 +107,219 @@ export default function ModelingPortfolio() {
     <section
       ref={sectionRef}
       id="gallery"
-      className="relative h-screen overflow-hidden"
+      className="relative overflow-hidden"
       style={{
+        height: '100vh',
         background:
           'radial-gradient(ellipse at 22% 32%, rgba(235,130,88,0.22) 0%, transparent 52%), ' +
           'radial-gradient(ellipse at 78% 70%, rgba(190,184,235,0.20) 0%, transparent 52%), ' +
           '#000000',
       }}
     >
-      {/* ── SCATTER VIEW (desktop only) ─────────────────── */}
+      {/* ── SCATTER VIEW (desktop only — never renders on mobile) ── */}
       <div className="hidden md:block absolute inset-0 pointer-events-none">
-      <AnimatePresence mode="wait">
-        {mode === 'scatter' && (
-          <motion.div
-            key="scatter"
-            className="absolute inset-0 pointer-events-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
-          >
-            {/* Toggle */}
-            <div className="absolute top-4 right-4 z-30">
-              <TogglePill mode={mode} onScatter={() => setMode('scatter')} onCarousel={() => setMode('carousel')} />
-            </div>
+        <AnimatePresence mode="wait">
+          {mode === 'scatter' && (
+            <motion.div
+              key="scatter"
+              className="absolute inset-0 pointer-events-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+            >
+              {/* Toggle */}
+              <div className="absolute top-4 right-4 z-30">
+                <TogglePill mode={mode} onScatter={() => setMode('scatter')} onCarousel={() => setMode('carousel')} />
+              </div>
 
-            {/* Center heading */}
-            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none px-4">
-              <motion.span
-                initial={{ opacity: 0, y: 10 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-atl-rust text-xs tracking-[0.4em] uppercase mb-4 block"
-              >
-                Portfolio
-              </motion.span>
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.9, delay: 0.35 }}
-                className="text-5xl md:text-8xl lg:text-9xl leading-none"
-                style={{
-                  fontFamily: 'var(--font-milker)',
-                  background: 'linear-gradient(135deg, #EB8258 0%, #BEB8EB 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                The Work.
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.7, delay: 0.9 }}
-                className="text-atl-sand/60 text-xs tracking-[0.3em] uppercase mt-6"
-              >
-                move your cursor
-              </motion.p>
-            </div>
+              {/* Center heading */}
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none px-4">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-atl-rust text-xs tracking-[0.4em] uppercase mb-4 block"
+                >
+                  Portfolio
+                </motion.span>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.9, delay: 0.35 }}
+                  className="text-5xl md:text-8xl lg:text-9xl leading-none"
+                  style={{
+                    fontFamily: 'var(--font-milker)',
+                    background: 'linear-gradient(135deg, #EB8258 0%, #BEB8EB 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
+                  The Work.
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={inView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.7, delay: 0.9 }}
+                  className="text-atl-sand/60 text-xs tracking-[0.3em] uppercase mt-6"
+                >
+                  move your cursor
+                </motion.p>
+              </div>
 
-            {/* Parallax images */}
-            <div className="absolute inset-0">
-              <Floating sensitivity={-1} easingFactor={0.04} className="overflow-hidden">
-                {images.map(({ src, alt, pos, w, depth }, i) => (
-                  <FloatingElement key={src} depth={depth} className={pos}>
-                    <motion.div
-                      className={w}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.6, delay: i * 0.07, ease: 'easeOut' }}
-                    >
-                      <Image
-                        src={src}
-                        alt={alt}
-                        width={400}
-                        height={600}
-                        sizes="15vw"
-                        style={{ width: '100%', height: 'auto', display: 'block' }}
-                        className="hover:scale-105 transition-transform duration-300 cursor-pointer"
-                        onClick={() => { setIdx(i); setMode('carousel') }}
-                      />
-                    </motion.div>
-                  </FloatingElement>
-                ))}
-              </Floating>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {/* Parallax images */}
+              <div className="absolute inset-0">
+                <Floating sensitivity={-1} easingFactor={0.04} className="overflow-hidden">
+                  {images.map(({ src, alt, pos, w, depth }, i) => (
+                    <FloatingElement key={src} depth={depth} className={pos}>
+                      <motion.div
+                        className={w}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: i * 0.07, ease: 'easeOut' }}
+                      >
+                        <Image
+                          src={src}
+                          alt={alt}
+                          width={400}
+                          height={600}
+                          sizes="15vw"
+                          style={{ width: '100%', height: 'auto', display: 'block' }}
+                          className="hover:scale-105 transition-transform duration-300 cursor-pointer"
+                          onClick={() => { setIdx(i); setMode('carousel') }}
+                        />
+                      </motion.div>
+                    </FloatingElement>
+                  ))}
+                </Floating>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* ── CAROUSEL VIEW ───────────────────────────────── */}
+      {/* ── CAROUSEL VIEW (unified — one layout for all viewports, no dual-div stacking) ── */}
       <AnimatePresence mode="wait">
         {mode === 'carousel' && (
           <motion.div
             key="carousel"
-            className="absolute inset-0"
+            style={{ position: 'absolute', inset: 0 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
           >
+            {/* Full-bleed background image */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={idx}
+                style={{ position: 'absolute', inset: 0 }}
+                initial={{ opacity: 0, scale: 1.03 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <Image
+                  src={images[idx].src}
+                  alt={images[idx].alt}
+                  fill
+                  className="object-cover object-top"
+                  sizes="100vw"
+                  priority
+                />
+              </motion.div>
+            </AnimatePresence>
 
-            {/* ── MOBILE: full-bleed immersive ── */}
-            <div className="md:hidden absolute inset-0">
+            {/* Gradient overlay */}
+            <div
+              style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+              className="bg-gradient-to-b from-black/60 via-transparent to-black/90"
+            />
 
-              {/* Full-screen image */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={idx}
-                  className="absolute inset-0"
-                  initial={{ opacity: 0, scale: 1.03 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Image
-                    src={images[idx].src}
-                    alt={images[idx].alt}
-                    fill
-                    className="object-cover object-top"
-                    sizes="100vw"
-                    priority
-                  />
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Gradients */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black pointer-events-none" />
-
-              {/* Top bar: label + counter + toggle */}
-              <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-5 pt-5 z-20">
-                <div>
-                  <span className="text-atl-rust text-[9px] tracking-[0.5em] uppercase block mb-0.5">Portfolio</span>
-                  <span className="text-white/40 text-[9px] tracking-[0.25em] font-mono tabular-nums">
-                    {String(idx + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
-                  </span>
-                </div>
-                <TogglePill mode={mode} onScatter={() => setMode('scatter')} onCarousel={() => setMode('carousel')} />
+            {/* Top bar: label + counter + toggle */}
+            <div
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 20 }}
+              className="flex items-center justify-between px-5 md:px-14 pt-5 md:pt-8"
+            >
+              <div>
+                <span className="text-atl-rust text-[9px] tracking-[0.5em] uppercase block mb-0.5">
+                  Portfolio
+                </span>
+                <span className="text-white/40 text-[9px] tracking-[0.25em] font-mono tabular-nums">
+                  {String(idx + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+                </span>
               </div>
-
-              {/* Tap zones */}
-              <button
-                className="absolute left-0 top-0 w-1/2 h-full z-10"
-                onClick={() => setIdx(i => mod(i - 1, images.length))}
-                aria-label="Previous image"
-              />
-              <button
-                className="absolute right-0 top-0 w-1/2 h-full z-10"
-                onClick={() => setIdx(i => mod(i + 1, images.length))}
-                aria-label="Next image"
-              />
-
-              {/* Subtle edge chevrons */}
-              <div className="absolute left-3 top-1/2 -translate-y-1/2 z-20 pointer-events-none select-none">
-                <span className="text-white/15 text-3xl leading-none">‹</span>
-              </div>
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 z-20 pointer-events-none select-none">
-                <span className="text-white/15 text-3xl leading-none">›</span>
-              </div>
-
-              {/* Bottom: caption + thumbnail strip */}
-              <div className="absolute bottom-0 left-0 right-0 px-5 pb-8 z-20">
-                <p className="text-white/35 text-[9px] tracking-[0.35em] uppercase mb-4">
-                  {images[idx].alt}
-                </p>
-                <div
-                  className="flex gap-1.5 overflow-x-auto"
-                  style={{ scrollbarWidth: 'none' }}
-                >
-                  {images.map((img, i) => (
-                    <button
-                      key={img.src}
-                      onClick={(e) => { e.stopPropagation(); setIdx(i) }}
-                      aria-label={`View ${img.alt}`}
-                      className={`relative shrink-0 w-10 h-14 overflow-hidden transition-all duration-200 z-30 ${
-                        i === idx
-                          ? 'ring-1 ring-atl-rust opacity-100'
-                          : 'opacity-30 hover:opacity-60'
-                      }`}
-                    >
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        className="object-cover object-top"
-                        sizes="40px"
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <TogglePill mode={mode} onScatter={() => setMode('scatter')} onCarousel={() => setMode('carousel')} />
             </div>
 
-            {/* ── DESKTOP: header + image + thumbnails ── */}
-            <div className="hidden md:flex absolute inset-0 flex-col">
-              {/* Header */}
-              <div className="flex items-center justify-between px-14 pt-8 pb-3 shrink-0">
-                <div>
-                  <span className="text-atl-rust text-[9px] tracking-[0.4em] uppercase block mb-1">Portfolio</span>
-                  <span className="text-atl-stone/50 text-[9px] tracking-[0.25em] font-mono">
-                    {String(idx + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
-                  </span>
-                </div>
-                <TogglePill mode={mode} onScatter={() => setMode('scatter')} onCarousel={() => setMode('carousel')} />
-              </div>
+            {/* Tap zones */}
+            <button
+              style={{ position: 'absolute', left: 0, top: 0, width: '50%', height: '100%', zIndex: 10 }}
+              onClick={() => setIdx(i => mod(i - 1, images.length))}
+              aria-label="Previous image"
+            />
+            <button
+              style={{ position: 'absolute', right: 0, top: 0, width: '50%', height: '100%', zIndex: 10 }}
+              onClick={() => setIdx(i => mod(i + 1, images.length))}
+              aria-label="Next image"
+            />
 
-              {/* Main image */}
-              <div className="flex-1 relative min-h-0">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={idx}
-                    className="absolute inset-0 flex items-center justify-center px-16 py-2"
-                    initial={{ opacity: 0, x: 28 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -28 }}
-                    transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+            {/* Chevron hints */}
+            <div
+              style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', zIndex: 20, pointerEvents: 'none', userSelect: 'none' }}
+              className="md:left-6"
+            >
+              <span className="text-white/20 text-3xl leading-none">‹</span>
+            </div>
+            <div
+              style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', zIndex: 20, pointerEvents: 'none', userSelect: 'none' }}
+              className="md:right-6"
+            >
+              <span className="text-white/20 text-3xl leading-none">›</span>
+            </div>
+
+            {/* Bottom: heading (desktop) + caption + thumbnail strip */}
+            <div
+              style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 20 }}
+              className="px-5 md:px-14 pb-8 md:pb-10"
+            >
+              <h2
+                className="hidden md:block text-white leading-none mb-3"
+                style={{ fontFamily: 'var(--font-milker)', fontSize: 'clamp(32px, 5vw, 72px)' }}
+              >
+                The Work.
+              </h2>
+              <p className="text-white/35 text-[9px] tracking-[0.35em] uppercase mb-4">
+                {images[idx].alt}
+              </p>
+              <div
+                className="flex gap-1.5 overflow-x-auto"
+                style={{ scrollbarWidth: 'none' }}
+              >
+                {images.map((img, i) => (
+                  <button
+                    key={img.src}
+                    onClick={(e) => { e.stopPropagation(); setIdx(i) }}
+                    aria-label={`View ${img.alt}`}
+                    style={{ position: 'relative', flexShrink: 0, zIndex: 30 }}
+                    className={`w-10 h-14 overflow-hidden transition-all duration-200 ${
+                      i === idx
+                        ? 'ring-1 ring-atl-rust opacity-100'
+                        : 'opacity-30 hover:opacity-60'
+                    }`}
                   >
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={images[idx].src}
-                        alt={images[idx].alt}
-                        fill
-                        className="object-contain"
-                        sizes="75vw"
-                        priority
-                      />
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              {/* Caption + arrows + thumbnails */}
-              <div className="shrink-0 px-14 pb-6 pt-1">
-                <div className="flex items-center justify-between mb-3">
-                  <p className="text-atl-stone/40 text-[9px] tracking-[0.25em] uppercase truncate mr-4">
-                    {images[idx].alt}
-                  </p>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <button
-                      onClick={() => setIdx(i => mod(i - 1, images.length))}
-                      className="w-11 h-11 rounded-full border border-atl-stone/25 flex items-center justify-center text-atl-stone text-sm hover:border-atl-cream hover:text-atl-cream transition-all duration-200"
-                      aria-label="Previous image"
-                    >
-                      ←
-                    </button>
-                    <button
-                      onClick={() => setIdx(i => mod(i + 1, images.length))}
-                      className="w-11 h-11 rounded-full border border-atl-stone/25 flex items-center justify-center text-atl-stone text-sm hover:border-atl-cream hover:text-atl-cream transition-all duration-200"
-                      aria-label="Next image"
-                    >
-                      →
-                    </button>
-                  </div>
-                </div>
-
-                <div
-                  className="flex gap-1.5 overflow-x-auto pb-1"
-                  style={{ scrollbarWidth: 'none' }}
-                >
-                  {images.map((img, i) => (
-                    <button
-                      key={img.src}
-                      onClick={() => setIdx(i)}
-                      aria-label={`View ${img.alt}`}
-                      className={`relative shrink-0 w-11 h-14 overflow-hidden transition-all duration-200 ${
-                        i === idx
-                          ? 'ring-1 ring-atl-rust opacity-100'
-                          : 'opacity-25 hover:opacity-55'
-                      }`}
-                    >
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        className="object-cover object-top"
-                        sizes="44px"
-                      />
-                    </button>
-                  ))}
-                </div>
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      className="object-cover object-top"
+                      sizes="40px"
+                    />
+                  </button>
+                ))}
               </div>
             </div>
-
           </motion.div>
         )}
       </AnimatePresence>
