@@ -2,7 +2,6 @@ import Hero             from '@/components/Hero'
 import About            from '@/components/About'
 import ModelingPortfolio from '@/components/ModelingPortfolio'
 import Boxing           from '@/components/Boxing'
-import AtlPride         from '@/components/AtlPride'
 import PoemEntry        from '@/components/PoemEntry'
 import ContactFooter    from '@/components/ContactFooter'
 import Ticker           from '@/components/Ticker'
@@ -24,8 +23,6 @@ export default function Home() {
       <ModelingPortfolio />
 
       <Boxing />
-
-      <AtlPride />
 
       <PoemEntry />
 
