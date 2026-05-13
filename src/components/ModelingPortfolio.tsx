@@ -70,9 +70,9 @@ export default function ModelingPortfolio() {
     return () => window.removeEventListener('keydown', onKey)
   }, [mode])
 
-  // ── Toggle pill (shared) ─────────────────────────────
+  // ── Toggle pill (desktop only) ───────────────────────
   const TogglePill = () => (
-    <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1">
+    <div className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1">
       <button
         onClick={() => setMode('scatter')}
         aria-label="Scatter view"
@@ -106,12 +106,13 @@ export default function ModelingPortfolio() {
           '#000000',
       }}
     >
-      {/* ── SCATTER VIEW ────────────────────────────────── */}
+      {/* ── SCATTER VIEW (desktop only) ─────────────────── */}
+      <div className="hidden md:block absolute inset-0 pointer-events-none">
       <AnimatePresence mode="wait">
         {mode === 'scatter' && (
           <motion.div
             key="scatter"
-            className="absolute inset-0"
+            className="absolute inset-0 pointer-events-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -186,6 +187,7 @@ export default function ModelingPortfolio() {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
 
       {/* ── CAROUSEL VIEW ───────────────────────────────── */}
       <AnimatePresence mode="wait">
