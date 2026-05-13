@@ -52,15 +52,15 @@ function ListIcon({ active }: { active: boolean }) {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function ModelingPortfolio() {
-  const [mode, setMode] = useState<'scatter' | 'carousel'>('scatter')
+  const [mode, setMode] = useState<'scatter' | 'carousel'>('carousel')
   const [idx,  setIdx]  = useState(0)
 
   const sectionRef = useRef<HTMLElement>(null)
   const inView     = useInView(sectionRef, { once: true, margin: '-100px' })
 
-  // Default to carousel on mobile — scatter needs a mouse cursor
+  // Upgrade to scatter only on desktop — scatter needs a mouse cursor
   useEffect(() => {
-    if (window.innerWidth < 768) setMode('carousel')
+    if (window.innerWidth >= 768) setMode('scatter')
   }, [])
 
   // Keyboard nav in carousel
