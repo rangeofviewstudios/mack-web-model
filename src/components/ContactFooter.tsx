@@ -2,7 +2,9 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import ButterflyCursor from '@/components/ui/ButterflyCursor'
+import dynamic from 'next/dynamic'
+
+const ButterflyCursor = dynamic(() => import('@/components/ui/ButterflyCursor'), { ssr: false })
 
 const socials = [
   { label: 'Instagram', href: 'https://www.instagram.com/mackeroni_8/' },
@@ -119,7 +121,7 @@ export default function ContactFooter() {
         >
           Mack
         </span>
-        <p className="text-atl-stone/40 text-[9px] tracking-[0.25em] uppercase">
+        <p className="text-atl-stone/40 text-[9px] tracking-[0.25em] uppercase" suppressHydrationWarning>
           © {new Date().getFullYear()} &nbsp;·&nbsp; Atlanta, Georgia
         </p>
       </div>

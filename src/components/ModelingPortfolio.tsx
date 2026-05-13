@@ -47,6 +47,40 @@ function ListIcon({ active }: { active: boolean }) {
   )
 }
 
+// Defined outside component so React sees a stable component identity across renders
+function TogglePill({
+  mode,
+  onScatter,
+  onCarousel,
+}: {
+  mode: 'scatter' | 'carousel'
+  onScatter: () => void
+  onCarousel: () => void
+}) {
+  return (
+    <div className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1">
+      <button
+        onClick={onScatter}
+        aria-label="Scatter view"
+        className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+          mode === 'scatter' ? 'bg-atl-rust' : 'hover:bg-white/10'
+        }`}
+      >
+        <ScatterIcon active={mode === 'scatter'} />
+      </button>
+      <button
+        onClick={onCarousel}
+        aria-label="Carousel view"
+        className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+          mode === 'carousel' ? 'bg-atl-rust' : 'hover:bg-white/10'
+        }`}
+      >
+        <ListIcon active={mode === 'carousel'} />
+      </button>
+    </div>
+  )
+}
+
 export default function ModelingPortfolio() {
   const [mode, setMode] = useState<'scatter' | 'carousel'>('carousel')
   const [idx,  setIdx]  = useState(0)
@@ -69,30 +103,6 @@ export default function ModelingPortfolio() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [mode])
-
-  // ── Toggle pill (desktop only) ───────────────────────
-  const TogglePill = () => (
-    <div className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1">
-      <button
-        onClick={() => setMode('scatter')}
-        aria-label="Scatter view"
-        className={`w-10 h-10 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
-          mode === 'scatter' ? 'bg-atl-rust' : 'hover:bg-white/10'
-        }`}
-      >
-        <ScatterIcon active={mode === 'scatter'} />
-      </button>
-      <button
-        onClick={() => setMode('carousel')}
-        aria-label="Carousel view"
-        className={`w-10 h-10 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
-          mode === 'carousel' ? 'bg-atl-rust' : 'hover:bg-white/10'
-        }`}
-      >
-        <ListIcon active={mode === 'carousel'} />
-      </button>
-    </div>
-  )
 
   return (
     <section
@@ -120,7 +130,7 @@ export default function ModelingPortfolio() {
           >
             {/* Toggle */}
             <div className="absolute top-4 right-4 z-30">
-              <TogglePill />
+              <TogglePill mode={mode} onScatter={() => setMode('scatter')} onCarousel={() => setMode('carousel')} />
             </div>
 
             {/* Center heading */}
@@ -236,7 +246,7 @@ export default function ModelingPortfolio() {
                     {String(idx + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
                   </span>
                 </div>
-                <TogglePill />
+                <TogglePill mode={mode} onScatter={() => setMode('scatter')} onCarousel={() => setMode('carousel')} />
               </div>
 
               {/* Tap zones */}
@@ -302,7 +312,7 @@ export default function ModelingPortfolio() {
                     {String(idx + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
                   </span>
                 </div>
-                <TogglePill />
+                <TogglePill mode={mode} onScatter={() => setMode('scatter')} onCarousel={() => setMode('carousel')} />
               </div>
 
               {/* Main image */}
