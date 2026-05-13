@@ -123,7 +123,7 @@ export default function PoemEntry() {
             className="group inline-flex items-center gap-3 border border-atl-sand/25 hover:border-atl-rust text-atl-cream/70 hover:text-atl-cream px-8 py-4 text-[10px] tracking-[0.4em] uppercase transition-all duration-300"
             style={{ fontFamily: 'var(--font-milker)' }}
           >
-            Read the poem
+            Follow the butterfly
             <span className="text-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
           </Link>
         </motion.div>
