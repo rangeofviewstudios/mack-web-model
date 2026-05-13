@@ -9,11 +9,13 @@ function MiniButterfly({ color = '#EB8258', size = 48, delay = 0 }: { color?: st
   return (
     <motion.div
       style={{ width: size, height: size * 0.9 }}
+      initial={{ y: 0, rotate: -2 }}
       animate={{ y: [0, -6, 0], rotate: [-2, 2, -2] }}
       transition={{ duration: 4, delay, repeat: Infinity, ease: 'easeInOut' }}
     >
       <svg viewBox="-50 -55 100 110" width={size} height={size * 0.9} overflow="visible">
         <motion.g
+          initial={{ scaleX: 1 }}
           animate={{ scaleX: [1, 0.05, 1] }}
           transition={{ duration: 0.85, repeat: Infinity, ease: 'easeInOut', delay }}
           style={{ transformOrigin: '0px 0px' }}
@@ -23,6 +25,7 @@ function MiniButterfly({ color = '#EB8258', size = 48, delay = 0 }: { color?: st
           <circle cx="-20" cy="-16" r="4" fill="#C9A84C" fillOpacity="0.8" />
         </motion.g>
         <motion.g
+          initial={{ scaleX: 1 }}
           animate={{ scaleX: [1, 0.05, 1] }}
           transition={{ duration: 0.85, repeat: Infinity, ease: 'easeInOut', delay }}
           style={{ transformOrigin: '0px 0px' }}

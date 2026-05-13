@@ -39,6 +39,7 @@ function ButterflyDecor({
   return (
     <motion.div
       style={{ width: BW * scale, height: BH * scale, opacity }}
+      initial={{ x: 0, y: 0, rotate: -3 }}
       animate={{
         x: [0, dx, dx * 0.5, 0],
         y: [0, dy * 0.6, dy, 0],
@@ -59,6 +60,7 @@ function ButterflyDecor({
       >
         {/* Left wings */}
         <motion.g
+          initial={{ scaleX: 1 }}
           animate={{ scaleX: [1, 0.05, 1] }}
           transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
           style={{ transformOrigin: '0px 0px' }}
@@ -69,6 +71,7 @@ function ButterflyDecor({
         </motion.g>
         {/* Right wings */}
         <motion.g
+          initial={{ scaleX: 1 }}
           animate={{ scaleX: [1, 0.05, 1] }}
           transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
           style={{ transformOrigin: '0px 0px' }}
